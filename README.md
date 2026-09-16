@@ -39,10 +39,12 @@ sed -i 's/data-palette="stone"/data-palette="slate"/' *.html
 
 ## Set the domain
 
+The live domain is **hwjc.uk**, baked into `.build/build.py` and the `CNAME` file.
+
 Every page has a canonical URL and Open Graph tags pointing at `https://YOUR-DOMAIN` until you set it:
 
 ```sh
-./set-domain.sh www.your-domain.co.uk
+# ./set-domain.sh www.your-domain.co.uk
 ```
 
 This also writes the `CNAME` file GitHub Pages needs.
