@@ -42,6 +42,7 @@
 
   var bookings = [];
   var selected = null;
+  var submitting = false;
   var viewDate = new Date();
   var userEmail = localStorage.getItem("kiddushUserEmail") || null;
 
@@ -330,6 +331,9 @@
         premiumExtraValue = checkedExtra.value;
       }
 
+      if (submitting) return;
+      submitting = true;
+
       var btn = document.getElementById("reserveBtn");
       btn.disabled = true;
       btn.textContent = "Reserving...";
@@ -379,6 +383,7 @@
         if (!res.ok) throw new Error("Server error: " + (json && json.message ? json.message : "HTTP " + res.status));
         if (json && json.status === "error") throw new Error(json.message || "Unable to complete booking");
 
+        submitting = false;
         msg.textContent = "Booking confirmed!";
         msg.className = "form-msg form-msg--ok";
 
@@ -390,15 +395,25 @@
 
       } catch (err) {
         console.error("Reservation failed:", err);
+        submitting = false;
 
         btn.disabled = false;
         btn.textContent = "Reserve date";
 
-        msg.textContent = "⚠️ " + err.message;
+        var taken = /just taken/i.test(err.message || "");
+        var friendly = taken
+          ? "This date has just been booked. If that was you, please check your email for the confirmation before trying again."
+          : err.message;
+
+        msg.textContent = "⚠️ " + friendly;
         msg.className = "form-msg form-msg--error";
         msg.hidden = false;
 
-        alert("Booking failed: " + err.message + "\n\nPlease try again or contact the office at office@hwjc.org.uk");
+        // Show the calendar as it really is now
+        localStorage.removeItem("kiddushBookings");
+        fetchBookings();
+
+        alert("Booking not completed: " + friendly + "\n\nIf you need help, contact the office at office@hwjc.org.uk");
       }
     };
   }
