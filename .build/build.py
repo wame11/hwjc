@@ -98,6 +98,7 @@ def head(title, description, path, extra_ld=""):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/styles.css?v={_v("css/styles.css")}">
+<script src="/js/shabbat.js?v={_v("js/shabbat.js")}"></script>
 <script type="application/ld+json">{ld}</script>
 {extra_ld}
 <script>document.documentElement.classList.remove('no-js');</script>
@@ -406,6 +407,10 @@ community = f"""
     <ul class="news__list news__list--row reveal-stagger">
       <li>
         <span class="eyebrow">Latest</span>
+        <h3>Pre-Yom Kippur evening</h3>
+        <p>An inspirational and informative evening with Barry Shaw of Paperweight, our Kol Nidrei charity, Arlene Barc, and Rabbi Toby speaking about the mitzvah of teshuva.</p>
+      </li>
+      <li>
         <h3>The new Kehilla Magazine is out</h3>
         <p>If your copy hasn&rsquo;t been delivered yet, you can pick one up in shul.</p>
       </li>
@@ -466,6 +471,37 @@ community = f"""
     <p class="credit">This reservation system was built by <a href="https://webcoreuk.com" rel="noopener" target="_blank">Webcore</a> (Ethan Ross) with help and inspiration from David Allen.</p>
   </div>
 </section>
+
+<section class="section" id="refuah-shleimah" aria-labelledby="refuah-title">
+  <div class="container">
+    <h2 id="refuah-title" class="reveal">Refuah Shleimah</h2>
+    <p class="lead reveal" data-delay="1" style="margin-bottom:1.25rem">Add a name to the Mi Sheberach prayer for those who are unwell, said in shul. Send Rabbi Toby the person&rsquo;s name in English and their Hebrew name with their mother&rsquo;s name.</p>
+    <form id="refuahForm" class="form-card kform reveal" data-delay="1" novalidate>
+      <div class="kform__field">
+        <label for="rfEnglish">Name in English</label>
+        <input required id="rfEnglish" name="english" autocomplete="off" placeholder="e.g. Sarah Cohen">
+      </div>
+      <div class="kform__field">
+        <label for="rfHebrew">Hebrew name, with mother&rsquo;s name</label>
+        <input required id="rfHebrew" name="hebrew" dir="auto" lang="he" autocomplete="off" placeholder="e.g. שרה בת רבקה or Sarah bat Rivka">
+      </div>
+      <div class="kform__field">
+        <label for="rfFrom">Your name</label>
+        <input required id="rfFrom" name="from" autocomplete="name">
+      </div>
+      <div class="kform__field">
+        <label for="rfNote">Anything else (optional)</label>
+        <input id="rfNote" name="note" autocomplete="off" placeholder="e.g. my mother, in hospital this week">
+      </div>
+      <div class="kform__full kform__actions">
+        <button type="submit" class="btn btn--primary">{icon('mail')} Send to Rabbi Toby</button>
+        <span id="rfMsg" class="form-msg" hidden></span>
+      </div>
+      <p class="kform__full muted" style="font-size:0.9rem;margin:0">This opens your email app with the details filled in, addressed to Rabbi Toby. Just press send.</p>
+    </form>
+  </div>
+</section>
+<script src="/js/refuah.js?v={_v("js/refuah.js")}" defer></script>
 
 <section class="section" aria-label="Community links">
   <div class="container">
