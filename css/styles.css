@@ -1510,3 +1510,53 @@ html.is-shabbat body > :not(.shabbat-screen) { display: none !important; }
 #refuahForm { padding: 1.5rem; }
 #refuahForm input[lang="he"] { font-size: 1.1rem; }
 #refuahForm .kform__actions { margin-top: 0.25rem; }
+
+/* ---------- Community drop-down sections ---------- */
+.section--acc { padding: 0; }
+.section--acc + .section--acc { border-top: 1px solid var(--line); }
+.acc summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+}
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; border-radius: 8px; }
+.acc__title { margin: 0; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+.acc__icon {
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  background: var(--surface);
+  position: relative;
+  transition: transform 0.25s, border-color 0.2s;
+}
+.acc__icon::before, .acc__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  background: var(--accent-strong);
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
+}
+.acc__icon::before { width: 14px; height: 2.5px; }
+.acc__icon::after { width: 2.5px; height: 14px; transition: opacity 0.2s; }
+.acc[open] .acc__icon::after { opacity: 0; }
+.acc[open] .acc__icon { border-color: var(--accent); }
+.acc summary:hover .acc__icon { border-color: var(--accent); }
+.acc__body { padding: 0.25rem 0 1.75rem; }
+.acc__body > .lead { margin-top: 0; }
+.news__list--row { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+@media (max-width: 600px) {
+  .acc summary { padding: 1rem 0; }
+  .acc__title { font-size: 1.3rem; }
+  .acc__icon { width: 2rem; height: 2rem; }
+}
+
+/* The Haftorah FAQ button only while that section is open */
+body.has-haftorah-acc:not(.haftorah-open) .chat-root { display: none; }
