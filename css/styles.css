@@ -1505,3 +1505,8 @@ html.is-shabbat body > :not(.shabbat-screen) { display: none !important; }
   margin: 0 0 1.5rem;
 }
 .shabbat-screen__small { font-size: 0.9rem; color: var(--muted); margin: 0; }
+
+/* Refuah Shleimah form */
+#refuahForm { padding: 1.5rem; }
+#refuahForm input[lang="he"] { font-size: 1.1rem; }
+#refuahForm .kform__actions { margin-top: 0.25rem; }
