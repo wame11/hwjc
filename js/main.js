@@ -105,3 +105,29 @@
     el.textContent = String(new Date().getFullYear());
   });
 })();
+
+/* Drop-down sections: open the one a link points at, and reveal its content */
+(function () {
+  function openFor(hash) {
+    if (!hash || hash.length < 2) return;
+    var el = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!el) return;
+    var d = el.closest("details");
+    while (d) { d.open = true; d = d.parentElement && d.parentElement.closest("details"); }
+    requestAnimationFrame(function () { el.scrollIntoView({ behavior: "smooth", block: "start" }); });
+  }
+  var hf = document.getElementById("read-my-haftorah");
+  if (hf && hf.tagName === "DETAILS") {
+    document.body.classList.add("has-haftorah-acc");
+    var syncChat = function () { document.body.classList.toggle("haftorah-open", hf.open); };
+    hf.addEventListener("toggle", syncChat); syncChat();
+  }
+  document.querySelectorAll("details.acc").forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) d.querySelectorAll(".reveal, .reveal-stagger").forEach(function (e) { e.classList.add("is-visible"); });
+    });
+    if (d.open) d.querySelectorAll(".reveal, .reveal-stagger").forEach(function (e) { e.classList.add("is-visible"); });
+  });
+  openFor(location.hash);
+  window.addEventListener("hashchange", function () { openFor(location.hash); });
+})();

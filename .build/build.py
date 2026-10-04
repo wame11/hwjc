@@ -401,34 +401,30 @@ community = f"""
   </div>
 </section>
 
-<section class="section section--tight" id="news" aria-labelledby="news-title">
+<section class="section section--acc">
   <div class="container">
-    <h2 id="news-title" class="reveal">Community News</h2>
+    <details class="acc" id="news" open>
+      <summary><h2 class="acc__title">Community News</h2><span class="acc__icon" aria-hidden="true"></span></summary>
+      <div class="acc__body">
+    
     <ul class="news__list news__list--row reveal-stagger">
       <li>
         <span class="eyebrow">Latest</span>
-        <h3>Pre-Yom Kippur evening</h3>
-        <p>An inspirational and informative evening with Barry Shaw of Paperweight, our Kol Nidrei charity, Arlene Barc, and Rabbi Toby speaking about the mitzvah of teshuva.</p>
-      </li>
-      <li>
-        <h3>The new Kehilla Magazine is out</h3>
-        <p>If your copy hasn&rsquo;t been delivered yet, you can pick one up in shul.</p>
-      </li>
-      <li>
-        <h3>Challah baking with the Rebbetzen</h3>
-        <p>The latest challah baking session with Rebbetzen Bracha was a great success.</p>
-      </li>
-      <li>
-        <h3>Lulav and etrog</h3>
-        <p>Text Rabbi Toby to order your lulav and etrog for Sukkot. <a href="mailto:rabbitoby@hwjc.org.uk?subject=Lulav%20and%20etrog">Email Rabbi Toby</a></p>
+        <h3>What a lovely Simchat Torah!</h3>
+        <p>Thank you to everyone who came, sang and danced. Mazal tov to Max and Jaime, our Chatan Torah and Chatan Bereishit.</p>
       </li>
     </ul>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="section" id="read-my-haftorah" aria-labelledby="haftorah-title">
+<section class="section section--acc">
   <div class="container">
-    <h2 id="haftorah-title" class="reveal">Read my Haftorah</h2>
+    <details class="acc" id="read-my-haftorah">
+      <summary><h2 class="acc__title">Read my Haftorah</h2><span class="acc__icon" aria-hidden="true"></span></summary>
+      <div class="acc__body">
+    
     <p class="lead reveal" data-delay="1" style="margin-bottom:1.25rem">Reserve a Shabbat or festival to read the Haftorah at Hadley Wood Shul. Pick a date below and we&rsquo;ll tell you which Haftorah it is.</p>
 
     <div class="split split--top split--cal reveal" data-delay="1">
@@ -469,12 +465,17 @@ community = f"""
 
     <p class="haftorah-note">Festival dates are only updated through the end of 2026. For questions or changes, please use the Haftorah List WhatsApp group.</p>
     <p class="credit">This reservation system was built by <a href="https://webcoreuk.com" rel="noopener" target="_blank">Webcore</a> (Ethan Ross) with help and inspiration from David Allen.</p>
+      </div>
+    </details>
   </div>
 </section>
 
-<section class="section" id="refuah-shleimah" aria-labelledby="refuah-title">
+<section class="section section--acc">
   <div class="container">
-    <h2 id="refuah-title" class="reveal">Refuah Shleimah</h2>
+    <details class="acc" id="refuah-shleimah">
+      <summary><h2 class="acc__title">Refuah Shleimah</h2><span class="acc__icon" aria-hidden="true"></span></summary>
+      <div class="acc__body">
+    
     <p class="lead reveal" data-delay="1" style="margin-bottom:1.25rem">Add a name to the Mi Sheberach prayer for those who are unwell, said in shul. Send Rabbi Toby the person&rsquo;s name in English and their Hebrew name with their mother&rsquo;s name.</p>
     <form id="refuahForm" class="form-card kform reveal" data-delay="1" novalidate>
       <div class="kform__field">
@@ -499,12 +500,17 @@ community = f"""
       </div>
       <p class="kform__full muted" style="font-size:0.9rem;margin:0">This opens your email app with the details filled in, addressed to Rabbi Toby. Just press send.</p>
     </form>
+      </div>
+    </details>
   </div>
 </section>
 <script src="/js/refuah.js?v={_v("js/refuah.js")}" defer></script>
 
-<section class="section" aria-label="Community links">
+<section class="section section--acc">
   <div class="container">
+    <details class="acc" id="more">
+      <summary><h2 class="acc__title">Events, Kiddush, Bar &amp; Bat Mitzvah and Hatzola</h2><span class="acc__icon" aria-hidden="true"></span></summary>
+      <div class="acc__body">
     <div class="card-grid card-grid--wide reveal-stagger">
       <article class="card" id="events">
         <div class="card__icon">{icon('calendar')}</div>
@@ -532,6 +538,8 @@ community = f"""
         <a class="btn btn--primary" href="https://www.hatzolahbs.com" rel="noopener" target="_blank">hatzolahbs.com {icon('external')}</a>
       </article>
     </div>
+      </div>
+    </details>
   </div>
 </section>
 """
