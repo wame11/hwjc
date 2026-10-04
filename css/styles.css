@@ -1479,3 +1479,29 @@ a.card:hover h3 { color: var(--accent-strong); }
   .lookup { flex-direction: column; }
   .lookup .btn { align-self: flex-start; }
 }
+
+/* ---------- Shabbat / Yom Tov screen ---------- */
+html.is-shabbat { overflow: hidden; }
+html.is-shabbat body > :not(.shabbat-screen) { display: none !important; }
+.shabbat-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  text-align: center;
+  overflow-y: auto;
+}
+.shabbat-screen__inner { max-width: 36rem; }
+.shabbat-screen img { width: min(55%, 200px); height: auto; margin: 0 auto 1.5rem; }
+.shabbat-screen h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 0.6rem; }
+.shabbat-screen .lead { margin: 0 auto 1rem; }
+.shabbat-screen__greeting {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--accent-strong);
+  margin: 0 0 1.5rem;
+}
+.shabbat-screen__small { font-size: 0.9rem; color: var(--muted); margin: 0; }
