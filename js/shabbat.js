@@ -16,7 +16,7 @@
 
   function isBot() {
     var ua = (navigator && navigator.userAgent) ? navigator.userAgent : "";
-    return /bot|crawl|spider|slurp|duckduckbot|bingpreview|googlebot|headless|chrome-lighthouse/i.test(ua);
+    return /bot|crawl|spider|slurp|duckduckbot|bingpreview|googlebot|google-inspectiontool|googleother|google-extended|headless|chrome-lighthouse/i.test(ua);
   }
 
   function rad(d) { return d * Math.PI / 180; }
@@ -86,8 +86,6 @@
   }
 
   function render(block) {
-    if (isBot()) return;
-
     var isYomTov = block.names.length > 0;
     var title = isYomTov ? "Sorry! It’s " + block.names.join(" and ") : "Sorry! It’s Shabbat";
     var what = isYomTov ? "Yom Tov" : "Shabbat";
@@ -95,6 +93,7 @@
     var screen = document.createElement("div");
     screen.className = "shabbat-screen";
     screen.setAttribute("role", "dialog");
+    screen.setAttribute("data-nosnippet", "");
     screen.setAttribute("aria-label", title);
     screen.innerHTML =
       '<div class="shabbat-screen__inner">' +
@@ -105,7 +104,6 @@
         '<p class="shabbat-screen__small">In a life-threatening emergency always call 999. Hatzola HBS: <a href="https://www.hatzolahbs.com" rel="noopener">hatzolahbs.com</a></p>' +
       '</div>';
     document.body.appendChild(screen);
-    document.title = title + " · Hadley Wood Jewish Community";
   }
 
   if (typeof module !== "undefined") { module.exports = { activeBlock: activeBlock, sunEvening: sunEvening, YOMTOV: YOMTOV }; return; }
@@ -116,7 +114,7 @@
   if (preview === "shabbat") block = { start: Date.now(), end: Date.now() + 26 * 3600000, names: [] };
   if (preview === "yomtov") block = { start: Date.now(), end: Date.now() + 50 * 3600000, names: ["Rosh Hashanah"] };
 
-  if (block) {
+  if (block && !isBot()) {
     document.documentElement.classList.add("is-shabbat");
     var ready = function () { render(block); };
     if (document.body) ready(); else document.addEventListener("DOMContentLoaded", ready);
