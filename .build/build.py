@@ -173,6 +173,8 @@ def page(filename, path, title, description, current, body, extra_ld=""):
     doc = doc.replace('href="/', 'href="').replace('src="/', 'src="')
     doc = doc.replace('srcset="/', 'srcset="').replace(', /assets/', ', assets/')
     doc = doc.replace('poster="/', 'poster="')
+    if filename == "index.html":  # home page footer credit, added by hand on the live site
+        doc = doc.replace('Hadley Wood Jewish Community &middot; Hadley Wood Shul &middot;', 'Hadley Wood Jewish Community &middot; Made by Ethan Ross &middot; Hadley Wood Shul &middot;', 1)
     with open(os.path.join(OUT, filename), "w", encoding="utf-8") as f:
         f.write(doc)
     print("wrote", filename, len(doc))
@@ -403,24 +405,6 @@ community = f"""
 
 <section class="section section--acc">
   <div class="container">
-    <details class="acc" id="news" open>
-      <summary><h2 class="acc__title">Community News</h2><span class="acc__icon" aria-hidden="true"></span></summary>
-      <div class="acc__body">
-    
-    <ul class="news__list news__list--row reveal-stagger">
-      <li>
-        <span class="eyebrow">Latest</span>
-        <h3>What a lovely Simchat Torah!</h3>
-        <p>Thank you to everyone who came, sang and danced. Mazal tov to Max and Jaime, our Chatan Torah and Chatan Bereishit.</p>
-      </li>
-    </ul>
-      </div>
-    </details>
-  </div>
-</section>
-
-<section class="section section--acc">
-  <div class="container">
     <details class="acc" id="read-my-haftorah">
       <summary><h2 class="acc__title">Read my Haftorah</h2><span class="acc__icon" aria-hidden="true"></span></summary>
       <div class="acc__body">
@@ -633,7 +617,7 @@ kiddush = f"""
       </details>
     </div>
     <p style="margin-top:1.5rem">Questions? Email <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
-    <p class="credit">This booking system was built by <a href="https://webcoreuk.com" rel="noopener" target="_blank">Webcore</a> (Ethan Ross) with help from Craig Greene.</p>
+    <p class="credit">This booking system was built by Ethan Ross
   </div>
 </section>
 
