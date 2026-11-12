@@ -1560,3 +1560,16 @@ html.is-shabbat body > :not(.shabbat-screen) { display: none !important; }
 
 /* The Haftorah FAQ button only while that section is open */
 body.has-haftorah-acc:not(.haftorah-open) .chat-root { display: none; }
+
+/* Festival dates in the Haftorah calendar: available like any other date, marked with a star */
+.cal__day.is-festival { position: relative; }
+.cal__day.is-festival::before {
+  content: "\2605";
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: #b8901a;
+}
+.cal__star { color: #b8901a; font-size: 1rem; line-height: 1; }

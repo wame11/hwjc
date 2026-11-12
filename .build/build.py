@@ -423,7 +423,7 @@ community = f"""
           <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
         </div>
         <div id="hfGrid" class="cal__grid" role="group" aria-label="Calendar dates"></div>
-        <p class="cal__key"><span><span class="chip chip--free">Available</span> tap to reserve</span><span><span class="chip chip--festival">Festival</span> festival date</span><span><span class="chip chip--booked">Reserved</span> tap to see who</span></p>
+        <p class="cal__key"><span><span class="chip chip--free">Available</span> tap to reserve</span><span><span class="cal__star" aria-hidden="true">&#9733;</span> festival date, also free to reserve</span><span><span class="chip chip--booked">Reserved</span> tap to see who</span></p>
       </div>
       <div id="hfFormBox" class="form-card" aria-live="polite">
         <p class="form-intro">Select an available date on the calendar to reserve the Haftorah at <strong>Hadley Wood Shul</strong>.</p>

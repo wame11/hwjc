@@ -210,13 +210,15 @@
       cell.disabled = !(selectable || clickableReserved);
       cell.className = "cal__day" +
         (selectable ? " is-available" : clickableReserved ? " is-reserved" : " is-off") +
+        (isFestival && thisMonth ? " is-festival" : "") +
         (thisMonth ? "" : " is-other");
 
       let contentHtml = "";
       if (taken) {
         contentHtml = '<span class="chip chip--booked">Reserved</span>';
       } else if (selectable && isFestival) {
-        contentHtml = '<span class="chip chip--festival">Festival</span>';
+        // Festival dates are open to reserve like any other: say so, and mark the festival with a star
+        contentHtml = '<span class="chip chip--free">Available</span>';
       } else if (selectable) {
         contentHtml = '<span class="chip chip--free">Available</span>';
       } else if ((isSat || isFestival) && !thisMonth) {
@@ -224,7 +226,8 @@
       }
 
       cell.innerHTML = '<span class="cal__num">' + cd + '</span>' + contentHtml;
-      cell.setAttribute("aria-label", d.toLocaleDateString("en-GB", { timeZone: "UTC", weekday: "long", day: "numeric", month: "long", year: "numeric" }) + (taken ? ", reserved by " + (booking.name || "someone") : selectable ? ", available" : ""));
+      cell.setAttribute("aria-label", d.toLocaleDateString("en-GB", { timeZone: "UTC", weekday: "long", day: "numeric", month: "long", year: "numeric" }) + (taken ? ", reserved by " + (booking.name || "someone") : selectable ? ", available" : "") + (isFestival && thisMonth && FESTIVAL_NAME[iso] ? ", " + FESTIVAL_NAME[iso] : ""));
+      if (isFestival && thisMonth && FESTIVAL_NAME[iso]) cell.title = FESTIVAL_NAME[iso];
 
       if (selectable || clickableReserved) {
         cell.onclick = () => {
