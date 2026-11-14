@@ -8,6 +8,10 @@
 
   var YOMTOV = {"2026-04-02":"Pesach","2026-04-03":"Pesach","2026-04-08":"Pesach","2026-04-09":"Pesach","2026-05-22":"Shavuot","2026-05-23":"Shavuot","2026-09-12":"Rosh Hashanah","2026-09-13":"Rosh Hashanah","2026-09-21":"Yom Kippur","2026-09-26":"Sukkot","2026-09-27":"Sukkot","2026-10-03":"Shemini Atzeret","2026-10-04":"Simchat Torah","2027-04-22":"Pesach","2027-04-23":"Pesach","2027-04-28":"Pesach","2027-04-29":"Pesach","2027-06-11":"Shavuot","2027-06-12":"Shavuot","2027-10-02":"Rosh Hashanah","2027-10-03":"Rosh Hashanah","2027-10-11":"Yom Kippur","2027-10-16":"Sukkot","2027-10-17":"Sukkot","2027-10-23":"Shemini Atzeret","2027-10-24":"Simchat Torah","2028-04-11":"Pesach","2028-04-12":"Pesach","2028-04-17":"Pesach","2028-04-18":"Pesach","2028-05-31":"Shavuot","2028-06-01":"Shavuot","2028-09-21":"Rosh Hashanah","2028-09-22":"Rosh Hashanah","2028-09-30":"Yom Kippur","2028-10-05":"Sukkot","2028-10-06":"Sukkot","2028-10-12":"Shemini Atzeret","2028-10-13":"Simchat Torah","2029-03-31":"Pesach","2029-04-01":"Pesach","2029-04-06":"Pesach","2029-04-07":"Pesach","2029-05-20":"Shavuot","2029-05-21":"Shavuot","2029-09-10":"Rosh Hashanah","2029-09-11":"Rosh Hashanah","2029-09-19":"Yom Kippur","2029-09-24":"Sukkot","2029-09-25":"Sukkot","2029-10-01":"Shemini Atzeret","2029-10-02":"Simchat Torah","2030-04-18":"Pesach","2030-04-19":"Pesach","2030-04-24":"Pesach","2030-04-25":"Pesach","2030-06-07":"Shavuot","2030-06-08":"Shavuot","2030-09-28":"Rosh Hashanah","2030-09-29":"Rosh Hashanah","2030-10-07":"Yom Kippur","2030-10-12":"Sukkot","2030-10-13":"Sukkot","2030-10-19":"Shemini Atzeret","2030-10-20":"Simchat Torah","2031-04-08":"Pesach","2031-04-09":"Pesach","2031-04-14":"Pesach","2031-04-15":"Pesach","2031-05-28":"Shavuot","2031-05-29":"Shavuot","2031-09-18":"Rosh Hashanah","2031-09-19":"Rosh Hashanah","2031-09-27":"Yom Kippur","2031-10-02":"Sukkot","2031-10-03":"Sukkot","2031-10-09":"Shemini Atzeret","2031-10-10":"Simchat Torah","2032-03-27":"Pesach","2032-03-28":"Pesach","2032-04-02":"Pesach","2032-04-03":"Pesach","2032-05-16":"Shavuot","2032-05-17":"Shavuot","2032-09-06":"Rosh Hashanah","2032-09-07":"Rosh Hashanah","2032-09-15":"Yom Kippur","2032-09-20":"Sukkot","2032-09-21":"Sukkot","2032-09-27":"Shemini Atzeret","2032-09-28":"Simchat Torah"};
 
+  // Temporary opening: the site stays open, even on Shabbat or Yom Tov, until this time (UTC).
+  // A time in the past means it has no effect.
+  var OPEN_UNTIL = "2026-11-14T09:45:00Z";
+
   var LAT = 51.67, LON = -0.17;          // Hadley Wood
   var CANDLE_MINS = 18;                  // before sunset
   var NIGHTFALL_ANGLE = -8.5;            // sun altitude at the end of Shabbat
@@ -111,6 +115,7 @@
   var params = new URLSearchParams(location.search);
   var preview = params.get("preview");
   var block = activeBlock(Date.now());
+  if (block && !preview && Date.now() < Date.parse(OPEN_UNTIL)) block = null;
   if (preview === "shabbat") block = { start: Date.now(), end: Date.now() + 26 * 3600000, names: [] };
   if (preview === "yomtov") block = { start: Date.now(), end: Date.now() + 50 * 3600000, names: ["Rosh Hashanah"] };
 
